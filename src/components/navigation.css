@@ -1,0 +1,25 @@
+.navigation {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.navigation--container {
+    position: relative;
+    width: 100%;
+    padding: 1.625em;
+}
+
+.navigation--logo {
+    width: 64px;
+    max-width: 100%;
+}
+
+.navigation--logo img {
+    max-width: 100%;
+}
+
+.navigation--back-to-top {
+
+}
