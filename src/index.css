@@ -1,7 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Joti+One|Open+Sans:300,400,600,700,800');
 
+/**
+*    Animations
+**/
+
+
+
 * {
     box-sizing: border-box;
+}
+
+body,
+html {
+    background-color: #00BCD4;
 }
 
 body {
@@ -9,6 +20,19 @@ body {
     padding: 0;
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
+    color: #333;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+}
+
+body a,
+body a:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+body ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
