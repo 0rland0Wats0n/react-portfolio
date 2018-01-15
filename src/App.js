@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import Navigation from "./components/navigation/navigation";
 import Header from "./components/header/header";
@@ -16,9 +16,10 @@ const App = () => {
                 <Navigation />
                 <Header />
 
-                <Route path="/me" component={Me} />
-                <Route path="/skills" component={Skills} />
-                <Route path="/work" component={Work} />
+                <Route exact path="/" render={() => { return <Redirect to="/me" />; }} />
+                <Route exact path="/me" component={Me} />
+                <Route exact path="/skills" component={Skills} />
+                <Route exact path="/work" component={Work} />
             </div>
         </Router>
     );

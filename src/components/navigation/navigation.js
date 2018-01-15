@@ -27,7 +27,7 @@ export default class Navigation extends Component {
                         <div className="navigation--nav">
                             <ul className="navigation--nav-list">
                                 <li>
-                                    <NavLink to="/me" activeClassName="active">me</NavLink>
+                                    <NavLink to="/me" activeClassName="active" exact>me</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/skills" activeClassName="active">skills</NavLink>
