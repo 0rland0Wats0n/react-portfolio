@@ -1,15 +1,17 @@
 import "./navigation.css";
 import React, { Component } from "react";
+import { NavLink, Link } from "react-router-dom";
 import feather from "feather-icons";
 
-import Logo from "./logo";
+import Logo from "../logo";
 
 export default class Navigation extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            "mobile_nav": "off"
+            "mobile_nav": "off",
+            "contact_modal": "off"
         };
     }
     render() {
@@ -18,21 +20,27 @@ export default class Navigation extends Component {
                 <div className="navigation">
                     <div className="navigation--container">
                         <div className="navigation--logo">
-                            <a href="/">
+                            <Link to="/me">
                                 <Logo alt="Orlando Watson - Logo"/>
-                            </a>
+                            </Link>
                         </div>
                         <div className="navigation--nav">
                             <ul className="navigation--nav-list">
-                                <li className="active"><a href="/">me</a></li>
-                                <li><a href="/">skills</a></li>
-                                <li><a href="/">work</a></li>
+                                <li>
+                                    <NavLink to="/me" activeClassName="active">me</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/skills" activeClassName="active">skills</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/work" activeClassName="active">work</NavLink>
+                                </li>
                             </ul>
                         </div>
                         <div className="flex--placeholder"></div>
-                        <div className="navigation--contact" data-active="on">
-                            <a href="#">get in touch</a>
-                        </div>
+                        <button type="button" className="navigation--contact" data-active="on" onClick={this.onContactOpenClick}>
+                            <span>get in touch</span>
+                        </button>
                         <div className="navigation--back-to-top" data-active="off">
                             <i data-feather="arrow-up"></i>
                         </div>
@@ -44,13 +52,13 @@ export default class Navigation extends Component {
                 <div className="navigation--mobile-container" data-active={this.state.mobile_nav}>
                     <div className="navigation--mobile">
                         <div className="navigation--mobile-close" onClick={this.onMenuCloseClick}>
-                            <i className="js--close-modal" data-feather="x" width="32" height="32"></i>
+                            <i className="modal--close" data-feather="x" width="32" height="32"></i>
                         </div>
                         <div className="navigation--nav-mobile">
                             <ul className="navigation--nav-list-mobile">
-                                <li><a href="/">me</a></li>
-                                <li><a href="/">skills</a></li>
-                                <li><a href="/">work</a></li>
+                                <li><Link to="/me">me</Link></li>
+                                <li><Link to="/skills">skills</Link></li>
+                                <li><Link to="/work">work</Link></li>
                             </ul>
                         </div>
                         <div className="navigation--nav-mobile-contact" data-active="off">
@@ -75,6 +83,13 @@ export default class Navigation extends Component {
                         </div>
                     </div>
                 </div>
+                <div className="navigation--contact-container" data-active={this.state.contact_modal}>
+                    <div className="navigation--contact-modal">
+                        <div className="navigation--contact-close" onClick={this.onContactCloseClick}>
+                            <i className="modal--close" data-feather="x" width="32" height="32"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -83,11 +98,8 @@ export default class Navigation extends Component {
         feather.replace();
     }
 
-    onMenuOpenClick = () => {
-        this.setState({ "mobile_nav": "on" });
-    }
-
-    onMenuCloseClick = () => {
-        this.setState({ "mobile_nav": "off" });
-    }
+    onMenuOpenClick = () => this.setState({ "mobile_nav": "on" });
+    onMenuCloseClick = () => this.setState({ "mobile_nav": "off" });
+    onContactOpenClick = () => this.setState({ "contact_modal": "on" });
+    onContactCloseClick = () => this.setState({ "contact_modal": "off" });
 }
