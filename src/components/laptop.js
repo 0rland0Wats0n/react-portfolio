@@ -4,6 +4,27 @@ export default class Laptop extends Component {
     render() {
         return (
             <svg {...this.props} version="1.1" id="Layer_1" x="0px" y="0px" viewBox="-50 100 700 350">
+                <path id="path1">
+                    <animate attributeName="d" from="m0, 0, h0" to="m0, 0, h1100" dur="6s" begin="4s" repeatCount="0" fill="freeze" />
+                </path>
+                <path id="path2">
+                    <animate attributeName="d" from="m0, 0, h0" to="m0, 0, h1100" dur="6s" begin="6s" repeatCount="0" fill="freeze" />
+                </path>
+                <path id="path3">
+                    <animate attributeName="d" from="m0, 0, h0" to="m0, 0, h1100" dur="6s" begin="8s" repeatCount="0" fill="freeze" />
+                </path>
+                <path id="path4">
+                    <animate attributeName="d" from="m0, 0, h0" to="m0, 0, h1100" dur="6s" begin="10s" repeatCount="0" fill="freeze" />
+                </path>
+                <path id="path5">
+                    <animate attributeName="d" from="m0, 0, h0" to="m0, 0, h1100" dur="6s" begin="12s" repeatCount="0" fill="freeze" />
+                </path>
+                <path id="path6">
+                    <animate attributeName="d" from="m0, 0, h0" to="m0, 0, h1100" dur="6s" begin="14s" repeatCount="0" fill="freeze" />
+                </path>
+                <path id="path7">
+                    <animate attributeName="d" from="m0, 0, h0" to="m0, 0, h1100" dur="6s" begin="16s" repeatCount="0" fill="freeze" />
+                </path>
                 <g>
                     <path id="XMLID_4_" fill="#333333" d="M504.97,398.91h-426c-6.6,0-12-5.4-12-12v-251c0-6.6,5.4-12,12-12h426c6.6,0,12,5.4,12,12
                         v251C516.97,393.51,511.57,398.91,504.97,398.91z"/>
@@ -60,13 +81,27 @@ export default class Laptop extends Component {
                                 <text id="XMLID_42_" transform="matrix(1 0 0 1 188.3329 312)" fill="#B3B3B3" fontFamily="'MyriadPro-Regular'" fontSize="6px">8.</text>
 
                                 <text id="XMLID_43_" transform="matrix(1 0 0 1 188.3331 329)" fill="#B3B3B3" fontFamily="'MyriadPro-Regular'" fontSize="6px">9.</text>
-                            <text id="XMLID_35_" transform="matrix(1 0 0 1 199 198)" fill="#B3B3B3" fontFamily="'Consolas'" fontSize="9px">/* Render Orlando **/</text>
-                            <text id="XMLID_46_" transform="matrix(1 0 0 1 198.9998 227)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">import ReactDOM from “react-dom”;</text>
-                            <text id="XMLID_26_" transform="matrix(1 0 0 1 199 213)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">import Orlando from “./Orlando”;</text>
-                            <text id="XMLID_47_" transform="matrix(1 0 0 1 198.6667 259)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">ReactDOM.render(</text>
-                            <text id="XMLID_49_" transform="matrix(1 0 0 1 220.0002 275)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">&lt;Orlando awesome=”true” /&gt;,</text>
-                            <text id="XMLID_50_" transform="matrix(1 0 0 1 220.0002 293)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">document.getElementById(”app”)</text>
-                            <text id="XMLID_51_" transform="matrix(1 0 0 1 199.0002 311)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">);</text>
+                            <text id="XMLID_35_" transform="matrix(1 0 0 1 199 198)" fill="#B3B3B3" fontFamily="'Consolas'" fontSize="9px">
+                                <textPath xlinkHref="#path1">/* Render Orlando **/</textPath>
+                            </text>
+                            <text id="XMLID_26_" transform="matrix(1 0 0 1 199 213)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">
+                                <textPath xlinkHref="#path2">import Orlando from "./Orlando";</textPath>
+                            </text>
+                            <text id="XMLID_46_" transform="matrix(1 0 0 1 198.9998 227)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">
+                                <textPath xlinkHref="#path3">import ReactDOM from "react-dom";</textPath>
+                            </text>
+                            <text id="XMLID_47_" transform="matrix(1 0 0 1 198.6667 259)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">
+                                <textPath xlinkHref="#path4">ReactDOM.render(</textPath>
+                            </text>
+                            <text id="XMLID_49_" transform="matrix(1 0 0 1 220.0002 275)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">
+                                <textPath xlinkHref="#path5">&lt;Orlando awesome="true" /&gt;,</textPath>
+                            </text>
+                            <text id="XMLID_50_" transform="matrix(1 0 0 1 220.0002 293)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">
+                                <textPath xlinkHref="#path6">document.getElementById("app")</textPath>
+                            </text>
+                            <text id="XMLID_51_" transform="matrix(1 0 0 1 199.0002 311)" fill="#00BCD4" fontFamily="'Consolas'" fontSize="9px">
+                                <textPath xlinkHref="#path7">);</textPath>
+                            </text>
                         </g>
                         <path id="XMLID_27_" opacity="0.1" fill="#FFFFFF" d="M66,143.33v243c-0.02,0.69-0.09,6.06,4.33,9.83c4.1,3.5,8.93,2.94,9.7,2.83
                             c18.84-42.48,55.4-110.26,123.24-174.11c56.34-53.03,113.28-83.6,152.7-100.89c-43.85-0.18-176.68-0.22-220.53-0.16

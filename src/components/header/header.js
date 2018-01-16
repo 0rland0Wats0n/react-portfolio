@@ -12,7 +12,8 @@ export default class Header extends Component {
         this.state = {
             "bg_state": "off",
             "bounce": "off",
-            "rise": "off"
+            "rise": "off",
+            "peek": "off"
         };
     }
 
@@ -50,7 +51,7 @@ export default class Header extends Component {
 
         for(let character in characters) {
             if(characters[character] === " ") {
-                results.push(<div className="word--container" data-bounce={this.state.bounce} onMouseLeave={this.bounceBack}>{letters.splice(0, letters.length)}</div>);
+                results.push(<div className="word--container" data-peek={this.state.peek} data-bounce={this.state.bounce} onMouseLeave={this.bounceBack}>{letters.splice(0, letters.length)}</div>);
             } else {
                 letters.push(<span>{characters[character]}</span>);
             }
@@ -62,7 +63,7 @@ export default class Header extends Component {
 
     bounceOver = (e) => {
         setTimeout(function() {
-            this.setState({ bounce: "on", "rise": "on" });
+            this.setState({ bounce: "on", "rise": "on", "peek": "off" });
         }.bind(this), 500);
     }
 
@@ -70,5 +71,8 @@ export default class Header extends Component {
         setTimeout(function() {
             this.setState({ bounce: "off", "rise": "off" });
         }.bind(this), 250);
+        setTimeout(function() {
+            this.setState({"peek": "on"});
+        }.bind(this), 500);
     }
 }

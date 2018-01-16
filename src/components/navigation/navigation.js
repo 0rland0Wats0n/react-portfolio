@@ -11,13 +11,14 @@ export default class Navigation extends Component {
 
         this.state = {
             "mobile_nav": "off",
-            "contact_modal": "off"
+            "contact_modal": "off",
+            "top": true,
         };
     }
     render() {
         return (
             <div>
-                <div className="navigation">
+                <div className="navigation" data-top={this.state.top ? "yes" : "no"}>
                     <div className="navigation--container">
                         <div className="navigation--logo">
                             <Link to="/me">
@@ -38,10 +39,10 @@ export default class Navigation extends Component {
                             </ul>
                         </div>
                         <div className="flex--placeholder"></div>
-                        <button type="button" className="navigation--contact" data-active="on" onClick={this.onContactOpenClick}>
+                        <button type="button" className="navigation--contact" data-active={this.state.top ? "on" : "off"} onClick={this.onContactOpenClick}>
                             <span>get in touch</span>
                         </button>
-                        <div className="navigation--back-to-top" data-active="off">
+                        <div className="navigation--back-to-top" data-active={!this.state.top ? "on" : "off"}>
                             <i data-feather="arrow-up"></i>
                         </div>
                         <div className="navigation--menu-toggle" onClick={this.onMenuOpenClick}>
@@ -94,6 +95,10 @@ export default class Navigation extends Component {
         )
     }
 
+    componentWillMount = () => {
+        window.addEventListener("scroll", this.handleScroll);
+    }
+
     componentDidMount() {
         feather.replace();
     }
@@ -102,4 +107,14 @@ export default class Navigation extends Component {
     onMenuCloseClick = () => this.setState({ "mobile_nav": "off" });
     onContactOpenClick = () => this.setState({ "contact_modal": "on" });
     onContactCloseClick = () => this.setState({ "contact_modal": "off" });
+
+    handleScroll = (e) => {
+        const scroll = e.srcElement.scrollingElement.scrollTop;
+
+        if(scroll >= 50) {
+            this.setState({ "top": false });
+        } else {
+            this.setState({ "top": true });
+        }
+    }
 }

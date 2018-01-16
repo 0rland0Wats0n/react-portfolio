@@ -61,6 +61,10 @@ header {
     text-shadow: 5px 5px 5px rgba(0,0,0,0.8);
 }
 
+.header--animated-heading .word--container:first-child[data-peek="on"] {
+    animation: peek 950ms infinite alternate;
+}
+
 .header--animated-heading .word--container[data-rise="on"] > span {
     transition: 350ms cubic-bezier(.17,.67,.83,.67);
     transform: translateY(-4vw);
