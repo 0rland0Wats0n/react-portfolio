@@ -10,20 +10,21 @@ export default class Header extends Component {
         super(props);
 
         this.state = {
-            "bg_state": "off",
+            "bg": "off",
             "bounce": "off",
             "rise": "off",
-            "peek": "off"
+            "peek": "off",
+            "top": "yes"
         };
     }
 
     render() {
         return (
             <header>
-                <div className="header--bg" data-active={this.state.bounce}>
+                <div className="header--bg" data-active={this.state.bg} data-top={this.state.top}>
                     {this.selectBacground()}
                 </div>
-                <div className="header--animated-heading">
+                <div className="header--animated-heading" data-top={this.state.top}>
                     <div>
                         {this.createHeading()}
                     </div>
@@ -32,9 +33,17 @@ export default class Header extends Component {
         )
     }
 
+    componentWillMount = () => {
+        window.addEventListener("scroll", this.handleScroll);
+    }
+
+    componentDidMount = () => {
+        this.bounce();
+    }
+
     selectBacground = () => {
         if(this.props.page === "me") {
-            return <Laptop onMouseEnter={this.bounceOver} />;
+            return <Laptop />;
         }
 
         if(this.props.page === "work") {
@@ -51,28 +60,38 @@ export default class Header extends Component {
 
         for(let character in characters) {
             if(characters[character] === " ") {
-                results.push(<div className="word--container" data-peek={this.state.peek} data-bounce={this.state.bounce} onMouseLeave={this.bounceBack}>{letters.splice(0, letters.length)}</div>);
+                results.push(<div className="word--container" data-peek={this.state.peek} data-bounce={this.state.bounce}>{letters.splice(0, letters.length)}</div>);
             } else {
                 letters.push(<span>{characters[character]}</span>);
             }
         }
 
-        results.push(<div className="word--container" data-rise={this.state.rise} onMouseLeave={this.bounceBack}>{letters.splice(0, letters.length)}</div>);
+        results.push(<div className="word--container" data-rise={this.state.rise}>{letters.splice(0, letters.length)}</div>);
         return results;
     }
 
-    bounceOver = (e) => {
-        setTimeout(function() {
-            this.setState({ bounce: "on", "rise": "on", "peek": "off" });
-        }.bind(this), 500);
+    bounce = (e) => {
+        setInterval(function() {
+            if(this.state.top === "no") { return; }
+            
+            this.setState({ bounce: "on", "rise": "on", "peek": "off", "bg": "on" });
+
+            setTimeout(function() {
+                this.setState({ bounce: "off", "rise": "off", "bg": "off" });
+                this.setState({"peek": "on"});
+            }.bind(this), 4000)
+        }.bind(this), 8000);
     }
 
-    bounceBack = (e) => {
-        setTimeout(function() {
-            this.setState({ bounce: "off", "rise": "off" });
-        }.bind(this), 250);
-        setTimeout(function() {
-            this.setState({"peek": "on"});
-        }.bind(this), 500);
+    handleScroll = (e) => {
+        const scroll = e.srcElement.scrollingElement.scrollTop;
+
+        if(scroll >= 50) {
+            this.setState({ "top": "no", "peek": "scrolling", "bounce": "scrolling", "bg": "scrolling" });
+        } else if(scroll < 50 && scroll > 10) {
+            this.setState({ "top": "scrolling", "peek": "on", "bounce": "on", "bg": "off" });
+        } else {
+            this.setState({ "top": "yes", "peek": "on", "bounce": "on", "bg": "off" });
+        }
     }
 }

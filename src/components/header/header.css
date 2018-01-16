@@ -19,7 +19,7 @@ header {
 
 .header--bg > svg {
     width: 45vw;
-    transition: width 550ms linear 250ms, z-index 450ms linear;
+    transition: width 550ms linear 250ms, z-index 450ms linear, opacity 550ms cubic-bezier(.17,.67,.83,.67) 200ms;
     z-index: 2;
 }
 
@@ -73,4 +73,16 @@ header {
 .header--animated-heading .word--container[data-rise="off"] > span {
     transition: 350ms cubic-bezier(.17,.67,.83,.67) 200ms;
     transform: translateY(0);
+}
+
+.header--animated-heading .word--container:first-child[data-peek="off"][data-rise="off"] {
+    transform: translateY(-5.525vw);
+}
+
+.header--bg[data-top="no"][data-active="scrolling"] > svg {
+    animation: fadingScale 900ms forwards alternate 200ms;
+}
+
+.header--bg[data-top="scrolling"][data-active="off"] > svg {
+    animation: fadingScaleReverse 900ms forwards alternate;
 }

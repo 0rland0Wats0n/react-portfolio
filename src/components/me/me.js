@@ -8,9 +8,9 @@ export default class Me extends Component {
     render() {
         return (
             <div>
-                <Header page="me" heading="I'm Orlando."/>
+                <Header key="me--header" page="me" heading="I'm Orlando."/>
                 <div className="me">
-                    
+
                 </div>
             </div>
         )
