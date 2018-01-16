@@ -9,14 +9,23 @@ export default class Header extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            "bg_state": "off",
+            "bounce": "off",
+            "rise": "off"
+        };
     }
 
     render() {
         return (
             <header>
-                <div className="header--bg">
+                <div className="header--bg" data-active={this.state.bounce}>
                     {this.selectBacground()}
+                </div>
+                <div className="header--animated-heading">
+                    <div>
+                        {this.createHeading()}
+                    </div>
                 </div>
             </header>
         )
@@ -24,7 +33,7 @@ export default class Header extends Component {
 
     selectBacground = () => {
         if(this.props.page === "me") {
-            return <Laptop />;
+            return <Laptop onMouseEnter={this.bounceOver} />;
         }
 
         if(this.props.page === "work") {
@@ -32,5 +41,34 @@ export default class Header extends Component {
         }
 
         return null
+    }
+
+    createHeading = () => {
+        const characters = Array.from(this.props.heading);
+        let letters = [];
+        let results = [];
+
+        for(let character in characters) {
+            if(characters[character] === " ") {
+                results.push(<div className="word--container" data-bounce={this.state.bounce} onMouseLeave={this.bounceBack}>{letters.splice(0, letters.length)}</div>);
+            } else {
+                letters.push(<span>{characters[character]}</span>);
+            }
+        }
+
+        results.push(<div className="word--container" data-rise={this.state.rise} onMouseLeave={this.bounceBack}>{letters.splice(0, letters.length)}</div>);
+        return results;
+    }
+
+    bounceOver = (e) => {
+        setTimeout(function() {
+            this.setState({ bounce: "on", "rise": "on" });
+        }.bind(this), 500);
+    }
+
+    bounceBack = (e) => {
+        setTimeout(function() {
+            this.setState({ bounce: "off", "rise": "off" });
+        }.bind(this), 250);
     }
 }

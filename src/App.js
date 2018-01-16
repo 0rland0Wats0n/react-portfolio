@@ -16,9 +16,9 @@ export default class App extends Component {
                     <Navigation />
 
                     <Route exact path="/" render={() => { return <Redirect to="/me" />; }} />
-                    <Route exact path="/me" component={Me} />
-                    <Route exact path="/skills" component={Skills} />
-                    <Route exact path="/work" component={Work} />
+                    <Route exact path="/me" component={Me}/>
+                    <Route exact path="/skills" component={Skills}/>
+                    <Route exact path="/work" component={Work}/>
                 </div>
             </Router>
         );

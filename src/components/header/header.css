@@ -1,11 +1,15 @@
 header {
     width: 100%;
-    height: 100%;
-    position: absolute;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.header--bg {
-    position: relative;
+.header--bg,
+.header--animated-heading {
+    position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
@@ -15,5 +19,54 @@ header {
 
 .header--bg > svg {
     width: 45vw;
-    transition: 550ms cubic-bezier(.17,.67,.83,.67) 250ms;
+    transition: width 550ms linear 250ms, z-index 450ms linear;
+    z-index: 2;
+}
+
+.header--bg[data-active="on"] > svg {
+    z-index: 0;
+}
+
+.header--animated-heading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+.header--animated-heading .word--container > span {
+    color: white;
+    font-weight: 900;
+    font-size: 10vw;
+    transition: 550ms cubic-bezier(.17,.67,.83,.67) 200ms;
+    text-shadow: 0 5px 5px rgba(0,0,0,0.5);
+    position: relative;
+    display: inline-block;
+}
+
+.header--animated-heading .word--container:first-child > span {
+    z-index: 1;
+}
+
+.header--animated-heading .word--container > span {
+    z-index: 3;
+}
+
+.header--animated-heading .word--container:first-child[data-bounce="off"] {
+    animation: bounceBack 450ms forwards alternate;
+}
+
+.header--animated-heading .word--container:first-child[data-bounce="on"] {
+    animation: bounceOver 1000ms forwards alternate;
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.8);
+}
+
+.header--animated-heading .word--container[data-rise="on"] > span {
+    transition: 350ms cubic-bezier(.17,.67,.83,.67);
+    transform: translateY(-4vw);
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.8);
+}
+.header--animated-heading .word--container[data-rise="off"] > span {
+    transition: 350ms cubic-bezier(.17,.67,.83,.67) 200ms;
+    transform: translateY(0);
 }

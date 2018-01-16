@@ -3,7 +3,17 @@
 /**
 *    Animations
 **/
+@keyframes bounceOver {
+    0% { transform: translateY(-5.525vw); }
+    25% { transform: translateY(-10.825vw); }
+    100% { transform: translateY(1vw);}
+}
 
+@keyframes bounceBack {
+    100% { transform: translateY(-5.525vw); }
+    25% { transform: translateY(-10.825vw); }
+    0% { transform: translateY(0vw);}
+}
 
 
 * {
