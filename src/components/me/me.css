@@ -1,5 +1,30 @@
 .me {
     position: relative;
     width: 100%;
+    padding: 2.3625em 1.8625em 12.3625em;
+}
+
+.me--heading {
+    text-align: center;
+    font-size: 4.325em;
+    font-family: 'Playfair Display', serif;
+    width: 60vw;
+    margin: 1.325em auto;
+    position: relative;
+    background-color: transparent;
+}
+
+.me--info {
+    text-align: center;
+    font-size: 1.375em;
+    width: 800px;
+    max-width: 100%;
+    margin: 0 auto 4em;
+    font-weight: 600;
+}
+
+.me--sections-section {
+    width: 100%;
     padding: 2.3625em 1.8625em;
+    background-color: #0097A7;
 }

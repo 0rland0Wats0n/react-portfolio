@@ -1,0 +1,9 @@
+.section--accent {
+    display: block;
+    padding: 1.625em 0.8625em;
+    text-align: center;
+}
+
+.section--accent > svg {
+    stroke: white;
+}
