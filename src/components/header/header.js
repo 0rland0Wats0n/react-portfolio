@@ -11,11 +11,13 @@ export default class Header extends Component {
 
         this.state = {
             "bg": "off",
-            "bounce": "off",
-            "rise": "off",
-            "peek": "off",
-            "top": "yes"
+            "peek": "on",
+            "top": "yes",
+            "last_position": 0,
+            "direction": "none"
         };
+
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
     render() {
@@ -37,10 +39,6 @@ export default class Header extends Component {
         window.addEventListener("scroll", this.handleScroll);
     }
 
-    componentDidMount = () => {
-        this.bounce();
-    }
-
     selectBacground = () => {
         if(this.props.page === "me") {
             return <Laptop />;
@@ -60,38 +58,39 @@ export default class Header extends Component {
 
         for(let character in characters) {
             if(characters[character] === " ") {
-                results.push(<div className="word--container" data-peek={this.state.peek} data-bounce={this.state.bounce}>{letters.splice(0, letters.length)}</div>);
+                results.push(<div className="word--container" data-peek={this.state.peek}>{letters.splice(0, letters.length)}</div>);
             } else {
                 letters.push(<span>{characters[character]}</span>);
             }
         }
 
-        results.push(<div className="word--container" data-rise={this.state.rise}>{letters.splice(0, letters.length)}</div>);
+        results.push(<div className="word--container">{letters.splice(0, letters.length)}</div>);
         return results;
-    }
-
-    bounce = (e) => {
-        setInterval(function() {
-            if(this.state.top === "no") { return; }
-            
-            this.setState({ bounce: "on", "rise": "on", "peek": "off", "bg": "on" });
-
-            setTimeout(function() {
-                this.setState({ bounce: "off", "rise": "off", "bg": "off" });
-                this.setState({"peek": "on"});
-            }.bind(this), 4000)
-        }.bind(this), 8000);
     }
 
     handleScroll = (e) => {
         const scroll = e.srcElement.scrollingElement.scrollTop;
 
-        if(scroll >= 50) {
-            this.setState({ "top": "no", "peek": "scrolling", "bounce": "scrolling", "bg": "scrolling" });
-        } else if(scroll < 50 && scroll > 10) {
-            this.setState({ "top": "scrolling", "peek": "on", "bounce": "on", "bg": "off" });
+        if(scroll > this.state.last_position) {
+            this.setState({
+                last_position: scroll,
+                direction: "down"
+            });
         } else {
-            this.setState({ "top": "yes", "peek": "on", "bounce": "on", "bg": "off" });
+            this.setState({
+                last_position: scroll,
+                direction: "up"
+            });
+        }
+
+        if(scroll >= 50 && this.state.direction == "down") {
+            this.setState({ "top": "no", "bg": "scrolling","peek": "off" });
+        } else if(scroll < 50 && this.state.direction == "up") {
+            this.setState({ "top": "yes", "bg": "off" });
+
+            setTimeout(function() {
+                this.setState({ "peek": "on" })
+            }.bind(this), 1000);
         }
     }
 }

@@ -25,6 +25,7 @@ header {
 
 .header--bg[data-active="on"] > svg {
     z-index: 0;
+    opacity: 0;
 }
 
 .header--animated-heading {
@@ -52,27 +53,34 @@ header {
     z-index: 3;
 }
 
-.header--animated-heading .word--container:first-child[data-bounce="off"] {
-    animation: bounceBack 450ms forwards alternate;
+.header--animated-heading[data-top="yes"] .word--container:first-child span {
+    animation: fadeInSink 300ms forwards alternate ease-in;
 }
 
-.header--animated-heading .word--container:first-child[data-bounce="on"] {
-    animation: bounceOver 1000ms forwards alternate;
-    text-shadow: 5px 5px 5px rgba(0,0,0,0.8);
+.header--animated-heading[data-top="no"] .word--container:first-child span {
+    animation: fadeOutRise 300ms forwards alternate linear;
 }
 
-.header--animated-heading .word--container:first-child[data-peek="on"] {
-    animation: peek 950ms infinite alternate;
+.header--animated-heading .word--container:first-child[data-peek="on"] span {
+    animation: peek 950ms infinite alternate ease-out;
 }
 
-.header--animated-heading .word--container[data-rise="on"] > span {
+.header--animated-heading[data-top="no"] .word--container:not(:first-child) > span:nth-child(-n+4){
     transition: 350ms cubic-bezier(.17,.67,.83,.67);
-    transform: translateY(-4vw);
-    text-shadow: 5px 5px 5px rgba(0,0,0,0.8);
+    animation: splitLeftFadeOut 300ms forwards alternate linear;
 }
-.header--animated-heading .word--container[data-rise="off"] > span {
-    transition: 350ms cubic-bezier(.17,.67,.83,.67) 200ms;
-    transform: translateY(0);
+.header--animated-heading[data-top="yes"] .word--container:not(:first-child) > span:nth-child(-n+4){
+    transition: 350ms cubic-bezier(.17,.67,.83,.67);
+    animation: splitLeftFadeOutReverse 300ms forwards alternate linear;
+}
+
+.header--animated-heading[data-top="no"] .word--container:not(:first-child) > span:nth-child(n+5){
+    transition: 350ms cubic-bezier(.17,.67,.83,.67);
+    animation: splitRightFadeOut 300ms forwards alternate linear;
+}
+.header--animated-heading[data-top="yes"] .word--container:not(:first-child) > span:nth-child(n+5){
+    transition: 350ms cubic-bezier(.17,.67,.83,.67);
+    animation: splitRightFadeOutReverse 300ms forwards alternate linear;
 }
 
 .header--animated-heading .word--container:first-child[data-peek="off"][data-rise="off"] {
@@ -83,6 +91,6 @@ header {
     animation: fadingScale 900ms forwards alternate 200ms;
 }
 
-.header--bg[data-top="scrolling"][data-active="off"] > svg {
+.header--bg[data-top="yes"][data-active="off"] > svg {
     animation: fadingScaleReverse 900ms forwards alternate;
 }
