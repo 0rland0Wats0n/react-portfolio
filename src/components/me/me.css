@@ -3,7 +3,7 @@
     width: 1280px;
     max-width: 100%;
     margin: 0 auto;
-    padding: 2.3625em 0 12.3625em;
+    padding: 2.3625em 0 0;
     position: relative;
 }
 
@@ -23,12 +23,10 @@
 
 .me--heading[data-active="off"] {
     opacity: 0;
-    transform: translateY(1.5em);
 }
 
 .me--heading[data-active="on"] {
     opacity: 1;
-    transform: translateY(-1.5em);
 }
 
 .me--info {
@@ -36,7 +34,6 @@
     background-color: #333;
     padding: 1.625em 0;
     transition: opacity 500ms linear, transform 100ms linear;
-    transform: translateY(0);
 }
 
 .me--info[data-active="off"] {
@@ -60,17 +57,30 @@
 }
 
 @media screen and (min-width: 768px) {
+    .me {
+        padding: 2.3625em 0 12.3625em;
+    }
+
     .me--info {
         position: absolute;
         width: 60vw;
         right: 50px;
         bottom: 100px;
         box-shadow: 0 0px 2px rgba(0,0,0,0.5);
+        transform: translateY(40px);
     }
 
     .me--heading {
         font-size: 6.325vw;
         padding-left: 100px;
+    }
+
+    .me--heading[data-active="off"] {
+        transform: translateY(1.5em);
+    }
+
+    .me--heading[data-active="on"] {
+        transform: translateY(-1.5em);
     }
 
     .me--info > p {

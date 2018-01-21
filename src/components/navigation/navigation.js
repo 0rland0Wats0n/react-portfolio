@@ -13,6 +13,7 @@ export default class Navigation extends Component {
             "mobile_nav": "off",
             "contact_modal": "off",
             "top": true,
+            "windowWidth": window.innerWidth
         };
     }
     render() {
@@ -39,10 +40,10 @@ export default class Navigation extends Component {
                             </ul>
                         </div>
                         <div className="flex--placeholder"></div>
-                        <button type="button" className="navigation--contact" data-active={this.state.top ? "on" : "off"} onClick={this.onContactOpenClick}>
+                        <button type="button" className="navigation--contact" data-active={(this.state.top && this.state.windowWidth >= 768) ? "on" : "off"} onClick={this.onContactOpenClick}>
                             <span>get in touch</span>
                         </button>
-                        <div className="navigation--back-to-top" data-active={!this.state.top ? "on" : "off"}>
+                        <div className="navigation--back-to-top" data-active={(!this.state.top && this.state.windowWidth >= 768) ? "on" : "off"}>
                             <i data-feather="arrow-up"></i>
                         </div>
                         <div className="navigation--menu-toggle" onClick={this.onMenuOpenClick}>
@@ -62,7 +63,7 @@ export default class Navigation extends Component {
                                 <li><Link to="/work">work</Link></li>
                             </ul>
                         </div>
-                        <div className="navigation--nav-mobile-contact" data-active="off">
+                        <div className="navigation--nav-mobile-contact">
                             <h4>get in touch</h4>
                             <ul className="social--icons">
                                 <li>
@@ -97,6 +98,7 @@ export default class Navigation extends Component {
 
     componentWillMount = () => {
         window.addEventListener("scroll", this.handleScroll);
+        window.addEventListener("resize", this.handleResize);
     }
 
     componentDidMount() {
@@ -107,6 +109,8 @@ export default class Navigation extends Component {
     onMenuCloseClick = () => this.setState({ "mobile_nav": "off" });
     onContactOpenClick = () => this.setState({ "contact_modal": "on" });
     onContactCloseClick = () => this.setState({ "contact_modal": "off" });
+
+    handleResize = () => this.setState({ "windowWidth": window.innerWidth });
 
     handleScroll = (e) => {
         const scroll = e.srcElement.scrollingElement.scrollTop;

@@ -45,6 +45,7 @@ export default class Me extends Component {
 
     handleScroll = (e) => {
         const scroll = e.srcElement.scrollingElement.scrollTop;
+        const windowWidth = window.innerWidth;
 
         if(scroll > this.state.last_position) {
             this.setState({
@@ -58,17 +59,21 @@ export default class Me extends Component {
             });
         }
 
-        if(scroll >= 300 && this.state.direction == "down") {
-            let newTranslate = this.state.translateY - 2;
-            this.setState({translateY: newTranslate});
-        } else if(scroll <= 700 && this.state.direction == "up") {
-            let newTranslate = this.state.translateY + 2;
-            this.setState({translateY: newTranslate});
+        if(windowWidth > 768) {
+            if(scroll >= 300 && this.state.direction == "down") {
+                let newTranslate = this.state.translateY - Math.floor(scroll%2);
+                this.setState({translateY: newTranslate});
+            } else if(scroll > 300 && this.state.direction == "up") {
+                let newTranslate = this.state.translateY + Math.floor(scroll%2);
+                this.setState({translateY: newTranslate});
+            }
+        } else {
+            this.setState({ translateY: 0 })
         }
 
         if(scroll >= 400 && this.state.direction == "down") {
             this.setState({ heading: "on", info: "on" });
-        } else if(scroll <= 399 && this.state.direction == "up") {
+        } else if(scroll <= 299 && this.state.direction == "up") {
             this.setState({ heading: "off", info: "off", translateY: 0 });
         }
 
