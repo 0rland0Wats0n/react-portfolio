@@ -39,6 +39,10 @@ export default class Header extends Component {
         window.addEventListener("scroll", this.handleScroll);
     }
 
+    componentWillUnmount = () => {
+        window.removeEventListener("scroll", this.handleScroll);
+    }
+
     selectBacground = () => {
         if(this.props.page === "me") {
             return <Laptop />;
@@ -83,9 +87,9 @@ export default class Header extends Component {
             });
         }
 
-        if(scroll >= 50 && this.state.direction == "down") {
+        if(scroll >= 100 && this.state.direction === "down") {
             this.setState({ "top": "no", "bg": "scrolling","peek": "off" });
-        } else if(scroll < 50 && this.state.direction == "up") {
+        } else if(scroll < 100 && this.state.direction === "up") {
             this.setState({ "top": "yes", "bg": "off" });
 
             setTimeout(function() {

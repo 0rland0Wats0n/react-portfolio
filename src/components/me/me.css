@@ -50,22 +50,78 @@
     padding: 1.25em 1.8625em;
 }
 
-.me--sections-section {
-    width: 100%;
-    padding: 9.3625em 1.8625em;
+.me--sections-link {
     background-color: #0097A7;
+    padding: 2.8625em 1.8625em;
+    position: relative;
+    z-index: 2;
 }
+
+.me--sections-link > a,
+.me--sections-link > a:visited,
+.me--sections-link > a:focus {
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 10.325vw;
+    text-transform: uppercase;
+    font-weight: 900;
+    z-index: 2;
+    position: relative;
+}
+
+.me--sections-link > span.arrow--right {
+    display: none;
+    position: absolute;
+    right: 25%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 0;
+    width: 0;
+    height: 0;
+    border-top: 6vw solid transparent;
+    border-bottom: 6vw solid transparent;
+    border-left: 12vw solid #333;
+}
+
+.me--sections-skills > a > span {
+    display: inline-block;
+
+}
+
+.me--sections-skills[data-active="no"] > a > span {
+    transform: translateY(40px);
+    opacity: 0;
+}
+
+.me--sections-skills > a > span:first-child { transition: transform 250ms linear, opacity 200ms linear, text-decoration 200ms linear; }
+.me--sections-skills > a > span:nth-child(2) { transition: transform 250ms linear 100ms, opacity 200ms linear, text-decoration 200ms linear; }
+.me--sections-skills > a > span:nth-child(3) { transition: transform 250ms linear 200ms, opacity 200ms linear, text-decoration 200ms linear; }
+.me--sections-skills > a > span:nth-child(4) { transition: transform 250ms linear 300ms, opacity 200ms linear, text-decoration 200ms linear; }
+.me--sections-skills > a > span:nth-child(5) { transition: transform 250ms linear 400ms, opacity 200ms linear, text-decoration 200ms linear; }
+.me--sections-skills > a > span:last-child { transition: transform 250ms linear 500ms, opacity 200ms linear, text-decoration 200ms linear; }
+
+.me--sections-skills[data-active="yes"] > a > span {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.me--sections-skills > a:hover > span {
+    text-decoration: underline;
+}
+
 
 @media screen and (min-width: 768px) {
     .me {
-        padding: 2.3625em 0 12.3625em;
+        padding: 2.3625em 0 20.3625em;
     }
 
     .me--info {
         position: absolute;
         width: 60vw;
         right: 50px;
-        bottom: 100px;
+        bottom: 30%;
         box-shadow: 0 0px 2px rgba(0,0,0,0.5);
         transform: translateY(40px);
     }
@@ -73,6 +129,21 @@
     .me--heading {
         font-size: 6.325vw;
         padding-left: 100px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .me--heading > span {
+        background-color: #333;
+        width: 40%;
+        height: 200px;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 20px;
+        margin: auto;
+        z-index: -1;
     }
 
     .me--heading[data-active="off"] {
@@ -86,6 +157,10 @@
     .me--info > p {
         font-size: 2vw;
         font-weight: lighter;
+    }
+
+    .me--sections-link > span.arrow--right {
+        display: block;
     }
 }
 

@@ -101,6 +101,11 @@ export default class Navigation extends Component {
         window.addEventListener("resize", this.handleResize);
     }
 
+    componentWillUnmount = () => {
+        window.removeEventListener("scroll", this.handleScroll);
+        window.removeEventListener("resize", this.handleResize);
+    }
+
     componentDidMount() {
         feather.replace();
     }
@@ -115,7 +120,7 @@ export default class Navigation extends Component {
     handleScroll = (e) => {
         const scroll = e.srcElement.scrollingElement.scrollTop;
 
-        if(scroll >= 50) {
+        if(scroll >= 100) {
             this.setState({ "top": false });
         } else {
             this.setState({ "top": true });

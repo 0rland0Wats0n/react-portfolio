@@ -40,7 +40,6 @@ header {
     font-weight: 900;
     font-size: 10vw;
     transition: 550ms cubic-bezier(.17,.67,.83,.67) 200ms;
-    text-shadow: 0 5px 5px rgba(0,0,0,0.5);
     position: relative;
     display: inline-block;
 }
