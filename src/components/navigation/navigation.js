@@ -1,6 +1,7 @@
 import "./navigation.css";
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
+import TransitionGroup from "react-transition-group/TransitionGroup";
 import feather from "feather-icons";
 
 import Logo from "../logo";
@@ -18,7 +19,7 @@ export default class Navigation extends Component {
     }
     render() {
         return (
-            <div>
+            <TransitionGroup component="nav">
                 <div className="navigation" data-top={this.state.top ? "yes" : "no"}>
                     <div className="navigation--container">
                         <div className="navigation--logo">
@@ -92,7 +93,7 @@ export default class Navigation extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </TransitionGroup>
         )
     }
 
@@ -104,6 +105,12 @@ export default class Navigation extends Component {
     componentWillUnmount = () => {
         window.removeEventListener("scroll", this.handleScroll);
         window.removeEventListener("resize", this.handleResize);
+    }
+
+    componentWillLeave = (next) => {
+        debugger;
+        this.setState({"top": false});
+        next();
     }
 
     componentDidMount() {

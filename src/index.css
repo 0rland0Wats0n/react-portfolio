@@ -53,6 +53,23 @@
     100% { opacity: 1; }
 }
 
+@keyframes scaleText {
+    0% { width: 0; }
+    6% { width: 100%; }
+    100% { width: 100%; }
+}
+
+@keyframes slashify {
+    0% { transform: rotate(-24deg) scale(0) }
+    6% { transform: rotate(-24deg) scale(1) }
+    12% { transform: rotate(-24deg) scale(1) }    
+    16.667% { transform: rotate(-24deg) scale(1) } /* 1second */
+    23% { transform: rotate(24deg) scale(1) }
+    33.34% { transform: rotate(24deg) scale(1) } /* 2secs */
+    40% { transform: rotate(24deg) scale(0) }
+    100% { transform: rotate(24deg) scale(0); }
+}
+
 
 * {
     box-sizing: border-box;

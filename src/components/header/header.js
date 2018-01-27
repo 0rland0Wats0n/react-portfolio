@@ -62,13 +62,13 @@ export default class Header extends Component {
 
         for(let character in characters) {
             if(characters[character] === " ") {
-                results.push(<div className="word--container" data-peek={this.state.peek}>{letters.splice(0, letters.length)}</div>);
+                results.push(<div className="word--container" key={character} data-peek={this.state.peek}>{letters.splice(0, letters.length)}</div>);
             } else {
-                letters.push(<span>{characters[character]}</span>);
+                letters.push(<span key={character}>{characters[character]}</span>);
             }
         }
 
-        results.push(<div className="word--container">{letters.splice(0, letters.length)}</div>);
+        results.push(<div className="word--container" key={characters.length}>{letters.splice(0, letters.length)}</div>);
         return results;
     }
 

@@ -52,9 +52,13 @@
 
 .me--sections-link {
     background-color: #0097A7;
-    padding: 2.8625em 1.8625em;
     position: relative;
     z-index: 2;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .me--sections-link > a,
@@ -68,49 +72,86 @@
     font-weight: 900;
     z-index: 2;
     position: relative;
-}
-
-.me--sections-link > span.arrow--right {
-    display: none;
-    position: absolute;
-    right: 25%;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    z-index: 0;
-    width: 0;
-    height: 0;
-    border-top: 6vw solid transparent;
-    border-bottom: 6vw solid transparent;
-    border-left: 12vw solid #333;
+    padding: 20px;
+    width: 70vw;
+    max-width: 100%;
 }
 
 .me--sections-skills > a > span {
     display: inline-block;
-
+    vertical-align: middle;
 }
 
-.me--sections-skills[data-active="no"] > a > span {
-    transform: translateY(40px);
-    opacity: 0;
+.me--sections-skills > a .side {
+    position: absolute;
+    background-color: white;
 }
 
-.me--sections-skills > a > span:first-child { transition: transform 250ms linear, opacity 200ms linear, text-decoration 200ms linear; }
-.me--sections-skills > a > span:nth-child(2) { transition: transform 250ms linear 100ms, opacity 200ms linear, text-decoration 200ms linear; }
-.me--sections-skills > a > span:nth-child(3) { transition: transform 250ms linear 200ms, opacity 200ms linear, text-decoration 200ms linear; }
-.me--sections-skills > a > span:nth-child(4) { transition: transform 250ms linear 300ms, opacity 200ms linear, text-decoration 200ms linear; }
-.me--sections-skills > a > span:nth-child(5) { transition: transform 250ms linear 400ms, opacity 200ms linear, text-decoration 200ms linear; }
-.me--sections-skills > a > span:last-child { transition: transform 250ms linear 500ms, opacity 200ms linear, text-decoration 200ms linear; }
+.me--sections-skills > a .text { overflow: hidden; }
+.me--sections-skills[data-active="no"] > a .text { width: 0; }
 
-.me--sections-skills[data-active="yes"] > a > span {
-    transform: translateY(0);
-    opacity: 1;
+.me--sections-skills[data-active="no"] >a .side.side--top,
+.me--sections-skills[data-active="no"]>a .side.side--bottom {
+    width: 0;
+}
+.me--sections-skills[data-active="no"] > a .side.side--right,
+.me--sections-skills[data-active="no"]>a .side.side--left {
+    height: 0;
 }
 
-.me--sections-skills > a:hover > span {
-    text-decoration: underline;
+.me--sections-skills[data-active="yes"]>a .text {
+    animation: scaleText 6s linear forwards;
 }
 
+.me--sections-skills[data-active="yes"] > a .side.side--top {
+    transition: width 500ms linear 500ms;
+    top: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+}
+
+.me--sections-skills[data-active="yes"]>a .side.side--right {
+    transition: height 500ms linear 1000ms;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+}
+
+.me--sections-skills[data-active="yes"]>a .side.side--bottom {
+    transition: width 500ms linear 1500ms;
+    bottom: 0;
+    right: 0;
+    height: 5px;
+    width: 100%;
+}
+
+.me--sections-skills[data-active="yes"]>a .side.side--left {
+    transition: height 500ms linear 2000ms;
+    bottom: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+}
+
+.me--sections-skills > a .slash {
+    width: 5px;
+    height: 140%;
+    outline: 5px solid #0097A7;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transform: scale(0);
+}
+
+.me--sections-skills[data-active="yes"] > a > .slash {
+    animation: slashify 6s linear forwards;
+}
 
 @media screen and (min-width: 768px) {
     .me {

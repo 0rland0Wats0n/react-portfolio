@@ -38,14 +38,13 @@ export default class Me extends Component {
                     </div>
                 </div>
                 <div className="me--sections-link me--sections-skills" data-active={this.state.showSkills}>
-                    <span className="arrow--right"></span>
                     <Link to="/skills">
-                        <span>s</span>
-                        <span>k</span>
-                        <span>i</span>
-                        <span>l</span>
-                        <span>l</span>
-                        <span>s</span>
+                        <span className="text">skills</span>
+                        <span className="side side--top"></span>
+                        <span className="side side--right"></span>
+                        <span className="side side--bottom"></span>
+                        <span className="side side--left"></span>
+                        <span className="slash"></span>
                     </Link>
                 </div>
                 <div className="me--sections-section"></div>
